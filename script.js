@@ -11,7 +11,7 @@ function callMeByYourName() {
         alert(`Dear ${n}, now we can try somthing special`);
         let ask = confirm("You sure You wanna try it?");
         if (ask) {
-            alert("Lets figure out XXXX task");
+            alert("Lets figure out XXXX task then");
             alert("I'll try to find the intersection of two line segments\n (X1, X2) and (X3, X4) placed on the same line ")
             getIntersection();
             changeBgImg();
@@ -43,27 +43,42 @@ function changeBgImg2() {
 
 function putCorrectNumber(index){
     while(true){
-        try {
             let num = parseFloat(prompt(`Please enter X${index}`));
-            return num;
-        } catch (error) {
-            alert("Incorrect imput. Try again!")
-            
+            if(isNaN(num)) {
+                alert("Incorrect input. Try again!");
+            }
+            else {
+                return num;}
         }
 
     }
-}
+
 
 function getIntersection() {
-    let x1 = putCorrectNumber(1);
-    let x2 = putCorrectNumber(2);
-    let x3 = putCorrectNumber(3);
-    let x4 = putCorrectNumber(4);
-    if(x2<x3 || x4<x1){
+    while(true){
+    x1 = putCorrectNumber(1);
+    x2 = putCorrectNumber(2);
+    if(x1 < x2){
+        break;
+    }
+    alert("X1 must be smaller than X2. Try again!");
+    }
+
+    while(true){
+        x3 = putCorrectNumber(3);
+        x4 = putCorrectNumber(4);
+        if(x3 < x4){
+            break;
+        }
+        alert("X3 must be smaller than X4. Try again!");
+    }
+    
+    if(x2 < x3 || x4 < x1){
         alert(`Segments (${x1}, ${x2}) and (${x3}, ${x4}) have no intersection`);
     }
     else if (x2==x3) {
-        alert(`Segments (${x1}, ${x2}) and (${x3}, ${x4})  intersect in a single point ${x2}`);}
+        alert(`Segments (${x1}, ${x2}) and (${x3}, ${x4})  intersect in a single point ${x2}`);
+    }
     else if (x4==x1) {
         alert(`Segments (${x1}, ${x2}) and (${x3}, ${x4})  intersect in a single point ${x1}`);
     } 
